@@ -1,0 +1,12 @@
+@mixin container-aspect-ratio($container-width, $height) {
+  // Container for image
+  position: relative;
+  width: $container-width;
+  display: block;
+  overflow: hidden;
+  &::before {
+    content: '';
+    float: left;
+    padding-top: $height * 100%;
+  }
+}
