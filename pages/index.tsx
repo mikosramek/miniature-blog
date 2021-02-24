@@ -1,27 +1,21 @@
-import Head from 'next/head'
 import get from 'lodash.get';
 import { Client } from '../prismic-configuration';
 import { getRawText } from '../utils/prismicHelpers';
 import PageHeader from "../components/PageHeader/PageHeader";
 import HomeSlices from "../components/HomeSlices/HomeSlices";
 import PageFooter from "../components/PageFooter/PageFooter";
+import PageMeta from "../components/PageMeta/PageMeta";
 // import { queryRepeatableDocuments } from '../utils/queries';
 
 export default function Home({ post }) {
   const meta = {
-    description : getRawText(get(post, 'data.page_description', '')),
-    title : getRawText(get(post, 'data.title', '')),
     header : getRawText(get(post, 'data.header_text', ''))
   }
   const slices = get(post, 'data.body', []);
 
   return (
     <div className="Home">
-      <Head>
-        <title>{meta.title}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content={meta.description} />
-      </Head>
+      <PageMeta post={post} />
       <PageHeader title={meta.header}/>
       <HomeSlices slices={slices}/>
       <PageFooter />
