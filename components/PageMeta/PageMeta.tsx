@@ -22,6 +22,11 @@ export default function PageMeta({ post }) {
         <meta property="og:title" content={meta.header} key="ogtitle" />
         <meta property="og:description" content={meta.description} key="ogdesc" />
         <meta name="description" content={meta.description} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://miniature-blog.vercel.app/" />
+        <meta property="twitter:title" content={meta.title} />
+        <meta property="twitter:description" content={meta.description} />
+        <meta property="twitter:image" content={meta.previewImage} />
       </Head>
     </div>
   )
