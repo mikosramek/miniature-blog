@@ -4,7 +4,17 @@
   position: relative;
   cursor: pointer;
   width: 100%;
-  &:hover {
+  @include breakpoint($desktop) {
+    &:hover {
+      .gradient {
+        opacity: 1;
+      }
+      .name {
+        opacity: 1;
+      }
+    }
+  }
+  @include breakpoint($mobile) {
     .gradient {
       opacity: 1;
     }
@@ -23,7 +33,6 @@
   pointer-events: none;
   bottom: 15px;
   left: 15px;
-  font-size: 24px;
   z-index: 2;
   color: $white;
   margin: 0 5px;
@@ -41,4 +50,5 @@
   background: linear-gradient(to top,$off-black, rgba($off-black, 0));
   opacity: 0;
   transition: opacity 0.3s ease-out;
+  z-index: 1;
 }

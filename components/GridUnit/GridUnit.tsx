@@ -3,7 +3,7 @@ import style from './style.module.scss';
 import ImageLoader from "../ImageLoader/ImageLoader";
 
 export default function Grid({ unit }) {
-  const { unitName, slug, shortDesc, thumbnail, type } = unit;
+  const { unitName, slug, thumbnail, type } = unit;
   const url = `/${type}/${encodeURIComponent(slug)}`;
   return (
     <div className={style.container}>

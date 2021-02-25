@@ -4,7 +4,6 @@ import Double from "../Slices/Double/Double";
 import Grid from "../Slices/Grid/Grid";
 
 export default function HomeSlices({ slices }) {
-
   return (
     <main className={style.main}>
       {

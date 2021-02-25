@@ -1,16 +1,34 @@
 import { Client } from '../../prismic-configuration';
 import { queryRepeatableDocuments } from '../../utils/queries';
+import UnitHeader from "../../components/UnitHeader/UnitHeader";
+import PageMeta from "../../components/PageMeta/PageMeta";
+import {parseUnitSlices} from "../../utils/prismicHelpers";
+import UnitGallery from "../../components/UnitGallery/UnitGallery";
 
-export default function Post ({ unit }) {
-  console.info(unit , 'mini/[slug].tsx@Post');
+export default function Mini ({ unit }) {
+  const slices = parseUnitSlices(unit);
+
   return (
-    <h2>Mini!</h2>
+    <>
+      <PageMeta post={unit} />
+      <main>
+        <UnitHeader unit={unit} />
+        {
+          slices.map((slice, i) => {
+            switch(slice.type) {
+              default:
+              case 'gallery':
+                return <UnitGallery items={slice.images} title={slice.title} key={i} />
+            }
+          })
+        }
+      </main>
+    </>
   )
 }
 
 export async function getStaticProps({params}) {
-  const client = Client();
-  const unit = (await client.getByUID('miniature', params.slug, {}));
+  const unit = (await Client().getByUID('miniature', params.slug, {}));
   return {
     props: {
       unit
@@ -19,9 +37,15 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-  const documents = await queryRepeatableDocuments();
+  const documents = await queryRepeatableDocuments('miniature');
+  const newPaths = [];
+  documents.forEach((doc) => {
+    newPaths.push({
+      params: { slug : `${doc.uid}` }
+    })
+  });
   return {
-    paths: documents.map(doc => `mini/${doc.uid}`),
-    fallback: true
+    paths: newPaths,
+    fallback: false
   }
 }

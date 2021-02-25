@@ -3,10 +3,14 @@
 .container {
   background: $image-placeholder;
 }
-.container--square {
+.containerSquare {
+  height: 100%;
+  width: 100%;
   @include container-aspect-ratio(100%, 1);
 }
-.container-16-9 {
+.container169 {
+  height: 100%;
+  width: 100%;
   @include container-aspect-ratio(100%, 0.5625);
 }
 .image {

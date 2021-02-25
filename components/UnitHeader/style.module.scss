@@ -1,0 +1,31 @@
+@import '../../styles/shared';
+
+.section {
+
+}
+
+.image {
+  height: 90vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  img {
+    object-position: 50% 75%;
+    @include breakpoint($phone) {
+      object-position: 50%;
+    }
+  }
+}
+
+.name {
+
+}
+.desc {
+  width: 60%;
+  @include breakpoint($tablet) {
+    width: 75%;
+  }
+  @include breakpoint($phone) {
+    width: 100%;
+  }
+}

@@ -1,11 +1,10 @@
 import get from 'lodash.get';
 import { Client } from '../prismic-configuration';
 import { getRawText } from '../utils/prismicHelpers';
-import PageHeader from "../components/PageHeader/PageHeader";
 import HomeSlices from "../components/HomeSlices/HomeSlices";
-import PageFooter from "../components/PageFooter/PageFooter";
 import PageMeta from "../components/PageMeta/PageMeta";
-// import { queryRepeatableDocuments } from '../utils/queries';
+import { useStore } from '../store/store';
+import {useEffect} from "react";
 
 export default function Home({ post }) {
   const meta = {
@@ -13,12 +12,16 @@ export default function Home({ post }) {
   }
   const slices = get(post, 'data.body', []);
 
+  const setTitle = useStore((state) => state.setTitle);
+  useEffect(() => {
+    // @ts-ignore
+    setTitle(meta.header);
+  }, []);
+
   return (
     <div className="Home">
       <PageMeta post={post} />
-      <PageHeader title={meta.header}/>
       <HomeSlices slices={slices}/>
-      <PageFooter />
     </div>
   )
 }

@@ -5,10 +5,10 @@ import { getRawText } from '../../utils/prismicHelpers';
 export default function PageMeta({ post }) {
 
   const meta = {
-    description : getRawText(get(post, 'data.page_description', '')),
-    title : getRawText(get(post, 'data.title', '')),
-    header : getRawText(get(post, 'data.header_text', '')),
-    previewImage :get(post, 'data.meta_image.url', '')
+    description : getRawText(get(post, 'data.page_description', '')) || getRawText(get(post, 'data.short_description', '')),
+    title : getRawText(get(post, 'data.title', '')) || getRawText(get(post, 'data.unit_name', '')),
+    header : getRawText(get(post, 'data.header_text', '')) || getRawText(get(post, 'data.unit_name', '')),
+    previewImage :get(post, 'data.meta_image.url', '') || getRawText(get(post, 'data.big_image.url', ''))
   }
 
   return (

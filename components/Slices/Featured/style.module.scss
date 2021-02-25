@@ -5,13 +5,26 @@
   max-height: 100vh;
   overflow: hidden;
   margin-bottom: 25px;
-  &:hover {
+  @include breakpoint($desktop) {
+    &:hover {
+      .gradient {
+        opacity: 1;
+      }
+      .name {
+        opacity: 1;
+      }
+    }
+  }
+  @include breakpoint($mobile) {
     .gradient {
       opacity: 1;
     }
     .name {
       opacity: 1;
     }
+  }
+  @include breakpoint($phone) {
+    height: 90vh;
   }
 }
 

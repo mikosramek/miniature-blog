@@ -1,24 +1,29 @@
+import { useEffect } from "react";
 import Head from 'next/head'
 import get from 'lodash.get';
 import { Client } from '../prismic-configuration';
 import { getRawText } from '../utils/prismicHelpers';
-import PageHeader from "../components/PageHeader/PageHeader";
 import PageMeta from "../components/PageMeta/PageMeta";
-// import { queryRepeatableDocuments } from '../utils/queries';
+import { useStore } from '../store/store';
 
-export default function Home({ post }) {
-  console.info(post, 'index.tsx@Home');
+export default function About({ post }) {
   const meta = {
     header : getRawText(get(post, 'data.header_text', ''))
   }
 
+  const setTitle = useStore((state) => state.setTitle);
+
+  useEffect(() => {
+    // @ts-ignore
+    setTitle(`${meta.header} - About`);
+  }, []);
+
   return (
-    <div className="Home">
+    <div className="About">
       <PageMeta post={post} />
       <Head>
         <meta property="og:title" content={`${meta.header} - About`} key="ogtitle" />
       </Head>
-      <PageHeader title={meta.header}/>
     </div>
   )
 }

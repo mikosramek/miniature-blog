@@ -4,9 +4,7 @@ import {parseUnit} from "../../../utils/prismicHelpers";
 import Link from "next/link";
 
 export default function Featured({ unit }) {
-  console.info(unit , 'Featured.tsx@Featured');
   const { unitName, slug, shortDesc, largeImage, type } = parseUnit(unit.primary);
-  console.info({ largeImage }, 'Featured.tsx@Featured');
   const url = `/${type}/${encodeURIComponent(slug)}`;
   return (
     <section className={style.section}>

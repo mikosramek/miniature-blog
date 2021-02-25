@@ -1,22 +1,23 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import style from './style.module.scss';
+import { useStore } from '../../store/store';
 
-export default function PageHeader({ title }) {
+export default function PageHeader({}) {
   const router = useRouter();
+
+  const title = useStore((state) => state.title);
 
   const LINKS = [
     {
       link : '/',
       copy : 'Home'
-    },
-    {
-      link : '/about',
-      copy : 'About'
     }
   ];
+
   return (
     <header className={style.PageHeader}>
+      <span className={style.backing} />
       <div className="wrapper">
         <div className={style.flexContainer}>
           <h1 className={style.Heading}>{title}</h1>
