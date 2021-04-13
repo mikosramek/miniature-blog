@@ -4,7 +4,10 @@ import ImageLoader from "../ImageLoader/ImageLoader";
 
 export default function Grid({ unit }) {
   const { unitName, slug, thumbnail, type } = unit;
-  const url = `/${type}/${encodeURIComponent(slug)}`;
+  let url = `/${type}/${encodeURIComponent(slug)}`;
+  if (type === 'unit') {
+    url = `/${encodeURIComponent(slug)}`;
+  }
   return (
     <div className={style.container}>
       <span className={style.gradient} />

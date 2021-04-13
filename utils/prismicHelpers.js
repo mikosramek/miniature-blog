@@ -11,7 +11,17 @@ export const getRawText = (richText) => {
 }
 
 export const parseUnit = ({ unit }) => {
-  const type = get(unit, 'type', '') === 'miniature' ? 'mini' : 'army';
+  let type = get(unit, 'type', '');
+  switch(type) {
+    case 'miniature':
+      type = 'mini';
+      break;
+    case 'army':
+      type = 'army';
+      break;
+    default:
+      type = 'unit';
+  }
   return {
     type,
     slug : get(unit, 'uid', ''),
@@ -61,6 +71,7 @@ export const parseUnitForPage = (unit) => {
   const data = get(unit, 'data', {});
   return {
     largeImage : get(data, 'big_image', {}),
+    mobileImage : get(data, 'big_image.Mobile', {}),
     unitName : getRawText(get(data, 'unit_name', '')),
     description : get(data, 'description', []),
     squareImage : get(data, 'thumbnail', {})

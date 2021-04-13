@@ -4,11 +4,12 @@ import { parseUnitForPage } from "../../utils/prismicHelpers";
 import { RichText } from 'prismic-reactjs';
 
 export default function UnitHeader({ unit }) {
-  const { unitName, description, largeImage } = parseUnitForPage(unit);
+  const { unitName, description, largeImage, mobileImage } = parseUnitForPage(unit);
+
   return (
     <section className={style.section}>
       <div className={style.image}>
-        <ImageLoader image={largeImage} size='169'/>
+        <ImageLoader image={largeImage} mobileImage={mobileImage} size='169' />
       </div>
       <div className="wrapper">
         <h1

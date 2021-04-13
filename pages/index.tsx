@@ -36,7 +36,11 @@ export async function getStaticProps() {
       'army.thumbnail',
       'army.big_image',
       'army.short_description',
-      'army.unit_name'
+      'army.unit_name',
+      'unit.thumbnail',
+      'unit.big_image',
+      'unit.short_description',
+      'unit.unit_name'
     ]
   }, (document) => {
     return document;

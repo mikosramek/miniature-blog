@@ -5,7 +5,12 @@ import Link from "next/link";
 
 export default function Featured({ unit }) {
   const { unitName, slug, shortDesc, largeImage, type } = parseUnit(unit.primary);
-  const url = `/${type}/${encodeURIComponent(slug)}`;
+
+  let url = `/${type}/${encodeURIComponent(slug)}`;
+  if (type === 'unit') {
+    url = `/${encodeURIComponent(slug)}`;
+  }
+
   return (
     <section className={style.section}>
       <div className={`${style.wrapper} wrapper`}>
