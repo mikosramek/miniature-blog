@@ -1,0 +1,123 @@
+@import '../../styles/shared';
+
+.container {
+  position: relative;
+}
+
+.thumbnail {
+  padding: 0;
+  border: none;
+  display: block;
+  @include breakpoint($desktop) {
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      + .fullscreenIcon {
+        opacity: 0.75;
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+.fullscreenIcon,
+.exitFullscreenIcon {
+  position: absolute;
+  width: 15px;
+  height: auto;
+  fill: $white;
+  opacity: 0.25;
+  transform: scale(1);
+  transition: all 0.3s ease-out;
+}
+
+.fullscreenIcon {
+  bottom: 5px;
+  right: 5px;
+}
+
+.exitFullscreenIcon {
+  top: -25px;
+  right: -25px;
+  cursor: pointer;
+  padding: 5px;
+  @include breakpoint($desktop) {
+    &:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+  @include breakpoint($tablet) {
+    width: 25px;
+    right: -5px;
+    top: -50px;
+  }
+  @include breakpoint($phone) {
+    right: -5px;
+    top: -50px;
+    width: 25px;
+  }
+}
+
+.fullscreenImageContainer {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  transition: opacity 0.5s ease-out;
+  &Visible {
+    display: flex;
+    opacity: 1;
+  }
+}
+
+.fullscreenBacking {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: rgba($off-black, 0.8);
+  cursor: pointer;
+  @include breakpoint($desktop) {
+    &:hover,
+    &:focus {
+      + div > .exitFullscreenIcon {
+        opacity: 0.75;
+        transform: scale(1.05);
+      }
+    }
+    &:focus {
+      + div > .exitFullscreenIcon {
+        outline: 1px dotted $white;
+      }
+    }
+  }
+}
+
+
+.fullscreenImageInner {
+  position: relative;
+  z-index: 3;
+  width: auto;
+  height: 75%;
+  border: 2px solid $off-black;
+  cursor: auto;
+  @include breakpoint($tablet) {
+    width: 75%;
+    height: auto;
+  }
+  @include breakpoint($phone) {
+    width: 90%;
+    height: auto;
+  }
+}

@@ -1,5 +1,6 @@
 import style from './style.module.scss';
 import ImageLoader from "../ImageLoader/ImageLoader";
+import GalleryImage from "../GalleryImage/GalleryImage";
 
 export default function UnitGallery({ items, title }) {
   return (
@@ -16,7 +17,8 @@ export default function UnitGallery({ items, title }) {
                   key={i}
                   className={style.unit}
                 >
-                  <ImageLoader image={image} size="square" />
+                  {/*<ImageLoader image={image} size="square" />*/}
+                  <GalleryImage image={image} />
                 </li>
               )
             })
